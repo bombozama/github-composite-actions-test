@@ -1,0 +1,24 @@
+name: CI+CD (push)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  warmup:
+    name: Prepare dependencies
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node_modules
+        id: warmup
+        uses: ./.github/workflows/ci/warmup
+        with:
+          env-vars: |
+            SOMEVALUE=value1
+            SOMEVALUE2=value2
+          cache-name: hello-cache
+      
+      - name: Print step result
+        run: echo "${{ steps.warmup.outputs.cache-name }}"
