@@ -23,9 +23,9 @@ runs:
     - name: Test env var setter
       shell: bash
       run: |
-        echo "$( cat <<EOL
+        cat >> $GITHUB_ENV << \EOL
         ${{ inputs.env-vars }}
-        EOL)" >> $GITHUB_ENV
+        EOL
 
     - name: print env
       shell: bash
