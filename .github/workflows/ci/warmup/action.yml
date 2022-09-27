@@ -18,11 +18,14 @@ runs:
     - name: Set cache name
       shell: bash
       id: setvars
+      run: echo "::set-output name=cache-name::${{ inputs.cache-name }}"
+    
+    - name: Test env var setter
+      shell: bash
       run: |
         echo "<<EOL
         ${{ inputs.env-vars }}
-        EOL >>" $GITHUB_ENV
-        echo "::set-output name=cache-name::${{ inputs.cache-name }}"
+        EOL" >> $GITHUB_ENV
 
     - name: print env
       shell: bash
