@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '**.md'
+      - 'Dockerfile.develop'
+      - 'compose-develop.yml'
   workflow_dispatch:
 
 jobs:
@@ -19,10 +23,13 @@ jobs:
         uses: ./.github/workflows/ci/warmup
         with:
           env-vars: |
-            SOMEVALUE=value1
-            SOMEVALUE2=value2
+            FOO=BAR
+            BAZ=QUX
             NPM_TOKEN=${{ secrets.NPM_TOKEN }}
           cache-name: ${{ runner.os }}-warmup-${{ hashFiles('**/yarn.lock') }}
       
       - name: Print step result
         run: echo "${{ steps.warmup.outputs.cache-name }}"
+
+
+         foo if only one placeholder name is needed. Then they will use bar, and finally baz. If more are needed, there is qux, quux, quuz, corge, grault, garply, waldo, fred, plugh, xyzzy, and thud.
