@@ -19,12 +19,15 @@ runs:
       shell: bash
       id: setvars
       run: |
-        ${{ inputs.env-vars }}
         echo <<EOL
         ${{ inputs.env-vars }}
         EOL >> $GITHUB_ENV
-        echo "::set-output name=cache-name::$inputs.cache-name"
+        echo "::set-output name=cache-name::${{ inputs.cache-name }}"
 
     - name: print env
       shell: bash
-      run: echo "$GITHUB_ENV"
+      run: echo "$SOMEVALUE"
+
+    - name: print env2
+      shell: bash
+      run: echo "$SOMEVALUE2"
