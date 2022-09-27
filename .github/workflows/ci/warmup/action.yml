@@ -27,6 +27,24 @@ runs:
         ${{ inputs.env-vars }}
         EOL
 
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+          node-version: 16
+          cache: yarn
+
+    - name: Restore node modules cache
+      uses: actions/cache@v3
+      id: yarn-cache
+      with:
+          path: node_modules
+          key: ${{ inputs.cache-name }}
+
+    - if: steps.yarn-cache.outputs.cache-hit != 'true'
+      name: Install dependencies
+      shell: bash
+      run: yarn install --prefer-offline --frozen-lockfile
+
     - name: print env
       shell: bash
       run: echo "${{ env.SOMEVALUE }}"
@@ -34,3 +52,7 @@ runs:
     - name: print env2
       shell: bash
       run: echo "${{ env.SOMEVALUE2 }}"
+
+    - name: print npm_token
+      shell: bash
+      run: echo "${{ env.NPM_TOKEN }}"

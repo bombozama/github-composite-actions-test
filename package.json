@@ -1,0 +1,12 @@
+{
+  "name": "github-composite-actions-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bombozama/github-composite-actions-test.git",
+  "author": "Gonzalo Henríquez <gonzalo@gowheeltheworld.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@wheeltheworld/wtw-ams-lib": "^4.11.0"
+  }
+}

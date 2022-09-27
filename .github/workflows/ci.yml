@@ -21,7 +21,8 @@ jobs:
           env-vars: |
             SOMEVALUE=value1
             SOMEVALUE2=value2
-          cache-name: hello-cache
+            NPM_TOKEN=${{ secrets.NPM_TOKEN }}
+          cache-name: ${{ runner.os }}-warmup-${{ hashFiles('**/yarn.lock') }}
       
       - name: Print step result
         run: echo "${{ steps.warmup.outputs.cache-name }}"
